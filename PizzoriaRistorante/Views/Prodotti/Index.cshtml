@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PizzoriaRistorante.Models.Prodotti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+    <div class="container">
+        <div class="row">
+
+@foreach (var item in Model)
+{
+           <div class="col-3">
+               <div class="card h-100">
+                   <div class="card-img-top">
+                       <img src="@Url.Content(item.Image)" style="height:200px" class="img-fluid" alt="...">
+                   </div>
+                   <div class="card-body">
+                       <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Name)</h5>
+                       <p class="card-text">Ingredienti : @Html.DisplayFor(modelItem => item.Ingredients)</p>
+                   </div>
+                   <ul class="list-group list-group-flush">
+                       <li class="list-group-item">Prezzo: @Html.DisplayFor(modelItem => item.Price)</li>
+                       <li class="list-group-item">Tempo di consegna :  @Html.DisplayFor(modelItem => item.DeliveyTime)</li>
+
+                   </ul>
+                   @if (Request.IsAuthenticated)
+                   {
+
+                       <div class="card-body">
+                           @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "action-link" }) |
+                           @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "action-link" }) |
+                           @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "action-link" })
+                       </div>
+                       }
+                   </div>
+           </div>
+}
+        </div>
+    </div>
