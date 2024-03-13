@@ -182,7 +182,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DettaglioOrdiniController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdiniController.cs" />
     <Compile Include="Controllers\ProdottiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,6 +193,7 @@
     <Compile Include="Models\DettaglioOrdini.cs" />
     <Compile Include="Models\ModelDbContext.cs" />
     <Compile Include="Models\Ordini.cs" />
+    <Compile Include="Models\OrdiniViewModel.cs" />
     <Compile Include="Models\Prodotti.cs" />
     <Compile Include="Models\Utenti.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +274,16 @@
     <Content Include="Views\Prodotti\Details.cshtml" />
     <Content Include="Views\Prodotti\Edit.cshtml" />
     <Content Include="Views\Prodotti\Index.cshtml" />
+    <Content Include="Views\Ordini\Create.cshtml" />
+    <Content Include="Views\Ordini\Delete.cshtml" />
+    <Content Include="Views\Ordini\Details.cshtml" />
+    <Content Include="Views\Ordini\Edit.cshtml" />
+    <Content Include="Views\Ordini\Index.cshtml" />
+    <Content Include="Views\DettaglioOrdini\Create.cshtml" />
+    <Content Include="Views\DettaglioOrdini\Delete.cshtml" />
+    <Content Include="Views\DettaglioOrdini\Details.cshtml" />
+    <Content Include="Views\DettaglioOrdini\Edit.cshtml" />
+    <Content Include="Views\DettaglioOrdini\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

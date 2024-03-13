@@ -37,7 +37,7 @@ namespace PizzoriaRistorante.Controllers
                 db.Utenti.Add(model);
                 db.SaveChanges();
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Prodotti");
             }
 
             //  significa che qualcosa non ha funzionato, quindi visualizza nuovamente il modulo
@@ -62,22 +62,9 @@ namespace PizzoriaRistorante.Controllers
                 if (user != null)
                 {
                     // utente autenticato
-                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                        1,
-                        user.Username,
-                        DateTime.Now,
-                        DateTime.Now.AddMinutes(30),
-                        false,
-                        user.Role,
-                        FormsAuthentication.FormsCookiePath);
+                    Session["UserId"] = user.UserId; // Salva l'UserId nella sessione
 
-
-                    string encTicket = FormsAuthentication.Encrypt(ticket);
-
-
-                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
-
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Create", "Ordini");
                 }
                 else
                 {
@@ -91,9 +78,10 @@ namespace PizzoriaRistorante.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
+            Session.Remove("UserId"); // Rimuove l'UserId dalla sessione
             return RedirectToAction("Login", "Account");
         }
+
 
 
 

@@ -12,6 +12,7 @@
 
     <div class="container">
         <div class="row">
+            <p> @Html.ActionLink("Ordina Prodotto", "Create", "Ordini", new { @class = "btn btn-primary" })</p>
 
 @foreach (var item in Model)
 {
@@ -29,6 +30,8 @@
                        <li class="list-group-item">Tempo di consegna :  @Html.DisplayFor(modelItem => item.DeliveyTime)</li>
 
                    </ul>
+                   
+
                    @if (Request.IsAuthenticated)
                    {
 
@@ -37,9 +40,10 @@
                            @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "action-link" }) |
                            @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "action-link" })
                        </div>
-                       }
-                   </div>
+                   }
+               </div>
            </div>
 }
         </div>
     </div>
+

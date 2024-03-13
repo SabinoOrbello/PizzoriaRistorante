@@ -20,10 +20,11 @@
 
         <dt>
             @Html.DisplayNameFor(model => model.Image)
+           
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="@Url.Content(Model.Image)" style="height:200px" class="img-fluid" alt="...">
         </dd>
 
         <dt>
