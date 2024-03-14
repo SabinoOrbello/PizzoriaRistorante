@@ -1,0 +1,20 @@
+﻿@model PizzoriaRistorante.Models.Ordini
+
+@{
+    ViewBag.Title = "Finalizza Ordine";
+}
+
+<h2>Finalizza Ordine</h2>
+
+@using (Html.BeginForm("FinalizzaOrdine", "Prodotti", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.OrderId)
+
+    <input type="submit" value="Finalizza Ordine" class="btn btn-default" />
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

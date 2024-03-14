@@ -25,12 +25,15 @@
                        <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Name)</h5>
                        <p class="card-text">Ingredienti : @Html.DisplayFor(modelItem => item.Ingredients)</p>
                    </div>
-                   <ul class="list-group list-group-flush">
-                       <li class="list-group-item">Prezzo: @Html.DisplayFor(modelItem => item.Price)</li>
-                       <li class="list-group-item">Tempo di consegna :  @Html.DisplayFor(modelItem => item.DeliveyTime)</li>
+                   @using (Html.BeginForm("AggiungiAlCarrello", "Prodotti", new { id = item.ProductId }, FormMethod.Post))
+                   {
+                       <ul class="list-group list-group-flush">
+                           <li class="list-group-item">Prezzo: @Html.DisplayFor(modelItem => item.Price)</li>
+                           <li class="list-group-item">Tempo di consegna :  @Html.DisplayFor(modelItem => item.DeliveyTime)</li>
+                       </ul>
+                       <input type="submit" value="Aggiungi al carrello" class="btn btn-primary" />
+                   }
 
-                   </ul>
-                   
 
                    @if (Request.IsAuthenticated)
                    {
@@ -46,4 +49,3 @@
 }
         </div>
     </div>
-

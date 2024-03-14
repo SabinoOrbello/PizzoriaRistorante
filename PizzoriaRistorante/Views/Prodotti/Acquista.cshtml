@@ -1,0 +1,31 @@
+﻿@model PizzoriaRistorante.Models.Prodotti
+
+@{
+    ViewBag.Title = "Acquista";
+}
+
+<h2>Acquista @Model.Name</h2>
+
+<p>Sei sicuro di voler acquistare questo prodotto?</p>
+
+<div>
+    <h4>Prodotti</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Price)</dt>
+        <dd>@Html.DisplayFor(model => model.Price)</dd>
+        <!-- Aggiungi qui altri campi del prodotto se necessario -->
+    </dl>
+</div>
+@using (Html.BeginForm("Acquista", "Prodotti", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Acquista" class="btn btn-default" /> 
+    <p>@Html.ActionLink("Finalizza Ordine", "FinalizzaOrdine", "Prodotti")</p>
+    
+</div>
+}

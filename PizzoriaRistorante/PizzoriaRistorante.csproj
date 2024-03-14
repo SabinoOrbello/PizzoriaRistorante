@@ -193,6 +193,7 @@
     <Compile Include="Models\DettaglioOrdini.cs" />
     <Compile Include="Models\ModelDbContext.cs" />
     <Compile Include="Models\Ordini.cs" />
+    <Compile Include="Models\OrdiniDettaglioViewModel.cs" />
     <Compile Include="Models\OrdiniViewModel.cs" />
     <Compile Include="Models\Prodotti.cs" />
     <Compile Include="Models\Utenti.cs" />
@@ -284,6 +285,11 @@
     <Content Include="Views\DettaglioOrdini\Details.cshtml" />
     <Content Include="Views\DettaglioOrdini\Edit.cshtml" />
     <Content Include="Views\DettaglioOrdini\Index.cshtml" />
+    <Content Include="Views\Ordini\Carrello.cshtml" />
+    <Content Include="Views\Ordini\Conferma.cshtml" />
+    <Content Include="Views\Prodotti\Acquista.cshtml" />
+    <Content Include="Views\Prodotti\AggiungiAlCarrello.cshtml" />
+    <Content Include="Views\Prodotti\FinalizzaOrdine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

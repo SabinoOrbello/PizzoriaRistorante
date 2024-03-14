@@ -10,6 +10,7 @@ using PizzoriaRistorante.Models;
 
 namespace PizzoriaRistorante.Controllers
 {
+    [Authorize]
     public class DettaglioOrdiniController : Controller
     {
         private ModelDbContext db = new ModelDbContext();

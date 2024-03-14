@@ -6,13 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using PizzoriaRistorante.Models;
-using static System.Web.Razor.Parser.SyntaxConstants;
 
 namespace PizzoriaRistorante.Controllers
 {
+    [Authorize]
     public class OrdiniController : Controller
     {
         private ModelDbContext db = new ModelDbContext();
@@ -49,41 +48,20 @@ namespace PizzoriaRistorante.Controllers
         // POST: Ordini/Create
         // Per la protezione da attacchi di overposting, abilitare le proprietà a cui eseguire il binding. 
         // Per altri dettagli, vedere https://go.microsoft.com/fwlink/?LinkId=317598.
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,OrderDate,ShippingAddress,Notes,Status")] Ordini ordini)
+        public ActionResult Create([Bind(Include = "OrderId,UserId,OrderDate,ShippingAddress,Notes,Status")] Ordini ordini)
         {
             if (ModelState.IsValid)
             {
-                // Recupera l'ID dell'utente dalla sessione
-                int? userId = Session["UserId"] as int?;
-                if (userId != null)
-                {
-                    // Imposta l'UserId dell'ordine
-                    ordini.UserId = (int)userId;
-
-                    db.Ordini.Add(ordini);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    // Redirect alla pagina di login se l'utente non è autenticato
-                    return RedirectToAction("Login", "Account");
-                }
+                db.Ordini.Add(ordini);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
+            ViewBag.UserId = new SelectList(db.Utenti, "UserId", "Username", ordini.UserId);
             return View(ordini);
         }
-
-
-
-
-
-
-
 
         // GET: Ordini/Edit/5
         public ActionResult Edit(int? id)
@@ -151,6 +129,54 @@ namespace PizzoriaRistorante.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpGet]
+        public ActionResult Carrello()
+        {
+            // Ottieni l'Username dell'utente corrente
+            string currentUsername = User.Identity.Name;
+
+            // Trova l'utente con questo Username
+            Utenti currentUser = db.Utenti.FirstOrDefault(u => u.Username == currentUsername);
+            if (currentUser == null)
+            {
+                // Gestisci l'errore qui
+            }
+
+            // Ottieni l'ID dell'utente corrente
+            int currentUserId = currentUser.UserId;
+
+            // Trova l'ordine non finalizzato per l'utente corrente
+            Ordini ordine = db.Ordini.Include(o => o.DettaglioOrdini.Select(d => d.Prodotti))
+                                     .FirstOrDefault(o => o.UserId == currentUserId && o.Status == "Non finalizzato");
+
+            if (ordine == null)
+            {
+                // Se non esiste un ordine non finalizzato, restituisci una vista vuota
+                return View(new List<DettaglioOrdini>());
+            }
+
+            // Restituisci la vista con i DettaglioOrdini dell'ordine
+            return View(ordine.DettaglioOrdini.ToList());
+        }
+
+
+        [HttpGet]
+
+        public ActionResult Conferma(int id)
+        {
+            // Trova l'ordine con l'ID specificato
+            Ordini ordine = db.Ordini.Include(o => o.DettaglioOrdini.Select(d => d.Prodotti))
+                                     .FirstOrDefault(o => o.OrderId == id);
+
+            if (ordine == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Restituisci la vista con l'ordine
+            return View(ordine);
         }
 
 

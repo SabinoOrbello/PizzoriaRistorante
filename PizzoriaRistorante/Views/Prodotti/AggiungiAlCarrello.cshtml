@@ -1,0 +1,31 @@
+﻿@model PizzoriaRistorante.Models.Prodotti
+
+@{
+    ViewBag.Title = "Aggiungi al carrello";
+}
+
+<h2>Aggiungi @Model.Name al carrello</h2>
+
+<p>Sei sicuro di voler aggiungere questo prodotto al carrello?</p>
+
+<div>
+    <h4>Prodotti</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Price)</dt>
+        <dd>@Html.DisplayFor(model => model.Price)</dd>
+        <!-- Aggiungi qui altri campi del prodotto se necessario -->
+    </dl>
+</div>
+@using (Html.BeginForm("AggiungiAlCarrello", "Prodotti", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Aggiungi al carrello" class="btn btn-default" />
+        <p>@Html.ActionLink("Carrello", "Carrello", "Ordini", new { area = "" }, new { @class = "action-link" })</p>|
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

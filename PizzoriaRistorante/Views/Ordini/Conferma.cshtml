@@ -1,0 +1,21 @@
+﻿@model PizzoriaRistorante.Models.Ordini
+
+<h2>Conferma dell'ordine</h2>
+
+<p>Il tuo ordine è stato finalizzato con successo!</p>
+
+<p>Numero dell'ordine: @Model.OrderId</p>
+<p>Data dell'ordine: @Model.OrderDate</p>
+<p>Indirizzo di spedizione: @Model.ShippingAddress</p>
+<p>Note: @Model.Notes</p>
+
+<h3>Prodotti:</h3>
+
+<ul>
+    @foreach (var item in Model.DettaglioOrdini)
+    {
+        <li>@item.Quantity x @item.Prodotti.Name: @item.Prodotti.Price</li>
+    }
+</ul>
+
+<p>Total: @Model.DettaglioOrdini.Sum(item => item.Quantity * item.Prodotti.Price)</p>
