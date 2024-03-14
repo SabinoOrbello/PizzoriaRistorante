@@ -6,15 +6,13 @@
 
 <h2>Finalizza Ordine</h2>
 
+<p>Sei sicuro di voler finalizzare l'ordine @Model.OrderId?</p>
+
 @using (Html.BeginForm("FinalizzaOrdine", "Prodotti", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-    @Html.HiddenFor(model => model.OrderId)
+    <input type="hidden" name="id" value="@Model.OrderId" />
 
     <input type="submit" value="Finalizza Ordine" class="btn btn-default" />
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

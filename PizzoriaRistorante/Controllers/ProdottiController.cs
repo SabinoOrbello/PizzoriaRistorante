@@ -277,7 +277,10 @@ namespace PizzoriaRistorante.Controllers
                     UserId = currentUserId,
                     OrderDate = DateTime.Now,
                     Status = "Non finalizzato",
-                    // Imposta gli altri campi dell'ordine come desideri
+                    ShippingAddress = ordine.ShippingAddress,
+                    Notes = ordine.Notes,
+
+
                 };
                 db.Ordini.Add(ordine);
             }
@@ -300,23 +303,31 @@ namespace PizzoriaRistorante.Controllers
         }
 
 
+
+
+
         // GET: Ordini/FinalizzaOrdine
         [HttpGet]
         public ActionResult FinalizzaOrdine(int? id)
         {
-            // Ottieni l'ID dell'utente corrente
-            string currentUserIdString = User.Identity.GetUserId();
-            int currentUserId;
-            if (!int.TryParse(currentUserIdString, out currentUserId))
+            if (id == null)
             {
-                // Gestisci l'errore di conversione qui
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            // Trova l'ordine non finalizzato per l'utente corrente
-            Ordini ordine = db.Ordini.FirstOrDefault(o => o.UserId == currentUserId && o.Status == "Non finalizzato");
+            // Trova l'ordine con l'ID specificato
+            Ordini ordine = db.Ordini.Find(id);
             if (ordine == null)
             {
                 return HttpNotFound();
+            }
+
+            // Verifica che l'ordine appartenga all'utente corrente
+            string currentUserIdString = User.Identity.GetUserId();
+            int currentUserId;
+            if (!int.TryParse(currentUserIdString, out currentUserId) || ordine.UserId != currentUserId)
+            {
+                // Gestisci l'errore qui (l'ordine non appartiene all'utente corrente)
             }
 
             // Passa l'ordine alla vista per essere visualizzato
@@ -324,30 +335,31 @@ namespace PizzoriaRistorante.Controllers
         }
 
 
-
-
         // GET: Ordini/FinalizzaOrdine
 
         [HttpPost]
-        public ActionResult FinalizzaOrdine(int id)
+        public ActionResult FinalizzaOrdine(int id) // id è l'ID dell'ordine
         {
-            // Ottieni l'ID dell'utente corrente
-            string currentUserIdString = User.Identity.GetUserId();
-            int currentUserId;
-            if (!int.TryParse(currentUserIdString, out currentUserId))
-            {
-                // Gestisci l'errore di conversione qui
-            }
-
-            // Trova l'ordine non finalizzato per l'utente corrente
-            Ordini ordine = db.Ordini.FirstOrDefault(o => o.UserId == currentUserId && o.Status == "Non finalizzato");
+            // Trova l'ordine con l'ID specificato
+            Ordini ordine = db.Ordini.Find(id);
             if (ordine == null)
             {
                 return HttpNotFound();
             }
 
+            // Verifica che l'ordine appartenga all'utente corrente
+            string currentUserIdString = User.Identity.GetUserId();
+            int currentUserId;
+            if (!int.TryParse(currentUserIdString, out currentUserId) || ordine.UserId != currentUserId)
+            {
+                // Gestisci l'errore qui (l'ordine non appartiene all'utente corrente)
+            }
+
             // Finalizza l'ordine
             ordine.Status = "Finalizzato";
+
+            // Segnala al contesto del database che l'ordine è stato modificato
+            db.Entry(ordine).State = EntityState.Modified;
 
             // Salva le modifiche nel database
             db.SaveChanges();
@@ -355,6 +367,9 @@ namespace PizzoriaRistorante.Controllers
             // Reindirizza l'utente a una pagina di conferma
             return RedirectToAction("Conferma", "Ordini", new { id = ordine.OrderId });
         }
+
+
+
 
 
 
