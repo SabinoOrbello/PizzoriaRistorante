@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<PizzoriaRistorante.Models.DettaglioOrdini>
 
-<h2>Carrello</h2>
+<h2>Riepilogo Ordine</h2>
 
 <table class="table">
     <thead>
@@ -35,3 +35,4 @@
 <p>
     @Html.ActionLink("FinalizzaOrdine", "FinalizzaOrdine", "Prodotti", new { id = orderId }, new { @class = "btn btn-success" })
 </p>
+<p>@Html.ActionLink("Aggiungi altri prodotti", "Index", "Prodotti", new { area = "" }, new { @class = "nav-link" })</p>
