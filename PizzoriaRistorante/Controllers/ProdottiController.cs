@@ -244,7 +244,7 @@ namespace PizzoriaRistorante.Controllers
 
 
         [HttpPost]
-        public ActionResult AggiungiAlCarrello(int id)
+        public ActionResult AggiungiAlCarrello(int id, string shippingAddress, string Notes)
         {
             // Trova il prodotto con l'ID specificato
             Prodotti prodotto = db.Prodotti.Find(id);
@@ -277,10 +277,8 @@ namespace PizzoriaRistorante.Controllers
                     UserId = currentUserId,
                     OrderDate = DateTime.Now,
                     Status = "Non finalizzato",
-                    ShippingAddress = ordine.ShippingAddress,
-                    Notes = ordine.Notes,
-
-
+                    ShippingAddress = shippingAddress, // Imposta l'indirizzo di spedizione con l'indirizzo fornito dall'utente
+                    Notes = Notes // Imposta le note con le note fornite dall'utente
                 };
                 db.Ordini.Add(ordine);
             }
@@ -301,6 +299,7 @@ namespace PizzoriaRistorante.Controllers
             // Reindirizza l'utente al carrello
             return RedirectToAction("Carrello", "Ordini");
         }
+
 
 
 

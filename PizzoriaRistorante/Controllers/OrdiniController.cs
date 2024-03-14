@@ -19,8 +19,8 @@ namespace PizzoriaRistorante.Controllers
         // GET: Ordini
         public ActionResult Index()
         {
-            var ordini = db.Ordini.Include(o => o.Utenti);
-            return View(ordini.ToList());
+
+            return View(db.Ordini.ToList());
         }
 
         // GET: Ordini/Details/5
@@ -117,8 +117,17 @@ namespace PizzoriaRistorante.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Ordini ordini = db.Ordini.Find(id);
+
+            // Elimina o aggiorna gli oggetti DettaglioOrdini che fanno riferimento all'oggetto Ordini
+            var dettaglioOrdini = db.DettaglioOrdini.Where(d => d.OrderId == id);
+            foreach (var dettaglio in dettaglioOrdini)
+            {
+                db.DettaglioOrdini.Remove(dettaglio);
+            }
+
             db.Ordini.Remove(ordini);
             db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

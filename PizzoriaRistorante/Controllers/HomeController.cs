@@ -15,5 +15,12 @@ namespace PizzoriaRistorante.Controllers
 
             return View();
         }
+
+        public ActionResult BackOffice()
+        {
+            ViewBag.Title = "Back Office";
+
+            return View();
+        }
     }
 }

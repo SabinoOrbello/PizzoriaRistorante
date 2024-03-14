@@ -12,40 +12,47 @@
 
     <div class="container">
         <div class="row">
-            <p> @Html.ActionLink("Ordina Prodotto", "Create", "Ordini", new { @class = "btn btn-primary" })</p>
+            
+           <p> @Html.ActionLink("Ordina Prodotto", "Index", "Prodotti", new { area = "" }, new { @class = "nav-link" })</p>
 
-@foreach (var item in Model)
-{
-           <div class="col-3">
-               <div class="card h-100">
-                   <div class="card-img-top">
-                       <img src="@Url.Content(item.Image)" style="height:200px" class="img-fluid" alt="...">
-                   </div>
-                   <div class="card-body">
-                       <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Name)</h5>
-                       <p class="card-text">Ingredienti : @Html.DisplayFor(modelItem => item.Ingredients)</p>
-                   </div>
-                   @using (Html.BeginForm("AggiungiAlCarrello", "Prodotti", new { id = item.ProductId }, FormMethod.Post))
-                   {
-                       <ul class="list-group list-group-flush">
-                           <li class="list-group-item">Prezzo: @Html.DisplayFor(modelItem => item.Price)</li>
-                           <li class="list-group-item">Tempo di consegna :  @Html.DisplayFor(modelItem => item.DeliveyTime)</li>
-                       </ul>
-                       <input type="submit" value="Aggiungi al carrello" class="btn btn-primary" />
-                   }
+            @foreach (var item in Model)
+            {
+                <div class="col-3">
+                    <div class="card h-100">
+                        <div class="card-img-top">
+                            <img src="@Url.Content(item.Image)" style="height:200px" class="img-fluid" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Name)</h5>
+                            <p class="card-text">Ingredienti : @Html.DisplayFor(modelItem => item.Ingredients)</p>
+                        </div>
+                        @using (Html.BeginForm("AggiungiAlCarrello", "Prodotti", new { id = item.ProductId }, FormMethod.Post))
+                        {
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Prezzo: @Html.DisplayFor(modelItem => item.Price)</li>
+                                <li class="list-group-item">Tempo di consegna :  @Html.DisplayFor(modelItem => item.DeliveyTime)</li>
+                            </ul>
+                            <div class="form-group">
+                                <label for="shippingAddress">Indirizzo di spedizione</label>
+                                <input type="text" class="form-control" id="shippingAddress" name="shippingAddress" required>
+                                <label for="Notes">Notes</label>
+                                <input type="text" class="form-control" id="Notes" name="Notes" required>
+                            </div>
+                            <input type="submit" value="Aggiungi al carrello" class="btn btn-primary" />
+                        }
 
 
-                   @if (Request.IsAuthenticated)
-                   {
+                        @if (Request.IsAuthenticated)
+                        {
 
-                       <div class="card-body">
-                           @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "action-link" }) |
-                           @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "action-link" }) |
-                           @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "action-link" })
-                       </div>
-                   }
-               </div>
-           </div>
-}
+                            <div class="card-body">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "action-link" }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "action-link" }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId }, new { @class = "action-link" })
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
         </div>
     </div>
