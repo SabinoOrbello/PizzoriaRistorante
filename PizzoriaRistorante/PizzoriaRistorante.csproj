@@ -218,6 +218,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Images\hotel.jpg" />
+    <Content Include="Content\Images\pizza-20.jpg" />
+    <Content Include="Content\Images\pizza-21.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -289,7 +291,6 @@
     <Content Include="Views\Ordini\Carrello.cshtml" />
     <Content Include="Views\Ordini\Conferma.cshtml" />
     <Content Include="Views\Prodotti\Acquista.cshtml" />
-    <Content Include="Views\Prodotti\AggiungiAlCarrello.cshtml" />
     <Content Include="Views\Prodotti\FinalizzaOrdine.cshtml" />
     <Content Include="Views\Home\BackOffice.cshtml" />
     <Content Include="Views\Home\TotaleOrdiniEvasi.cshtml" />

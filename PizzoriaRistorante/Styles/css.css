@@ -1,3 +1,66 @@
 ﻿.bgColor {
+    background-color: #ad1a1ae0;
+}
+
+.colorForm {
+    background-color: #b63636b8;
+}
+
+.bodyImage {
+    background-image: url('../Content/Images/pizza-20.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.fTitle {
+    font-family: 'Lobster', cursive;
+    font-size: 40px;
+    color: #c78a39;
+}
+
+.fForm {
+    font-family: 'Garamond', cursive;
+    font-size: 30px;
+    color: #ae5454f0;
+    font-weight: 600;
+}
+
+.botton {
     background-color: #c78a39;
+    color: white;
+    padding: 8px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.fLog {
+    font-family: 'Garamond', cursive;
+    font-size: 15px;
+    color: #ae5454f0;
+    font-weight: 600;
+}
+
+.cardStyle {
+    color: #ea7b29;
+    font-size: xx-large;
+    font-family: fantasy;
+}
+
+.cardFont {
+    font-family: 'Garamond', cursive;
+    font-size: 20px;
+    color: #ea7b29;
+    font-weight: 600;
+}
+
+.tableStyle {
+    color: #ea7b29;
+    font-size: xx-large;
+    font-family: fantasy;
 }

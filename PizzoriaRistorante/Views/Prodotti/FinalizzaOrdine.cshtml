@@ -3,16 +3,17 @@
 @{
     ViewBag.Title = "Finalizza Ordine";
 }
+<div class="container fForm bg-dark  border border-warning border-3 p-3 mt-3">
+    <h2 class="fTitle">Finalizza Ordine</h2>
 
-<h2>Finalizza Ordine</h2>
+    <p>Sei sicuro di voler finalizzare l'ordine @Model.OrderId?</p>
 
-<p>Sei sicuro di voler finalizzare l'ordine @Model.OrderId?</p>
+    @using (Html.BeginForm("FinalizzaOrdine", "Prodotti", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm("FinalizzaOrdine", "Prodotti", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+        <input type="hidden" name="id" value="@Model.OrderId" />
 
-    <input type="hidden" name="id" value="@Model.OrderId" />
-
-    <input type="submit" value="Finalizza Ordine" class="btn btn-default" />
-}
+        <input type="submit" value="Finalizza Ordine" class="botton" />
+    }
+</div>

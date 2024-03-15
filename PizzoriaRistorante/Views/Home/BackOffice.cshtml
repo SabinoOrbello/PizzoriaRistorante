@@ -3,9 +3,11 @@
     ViewBag.Title = "BackOffice";
 }
 
-<h2>BackOffice</h2>
+<div class="container">
+    <h2 class="fTitle">BackOffice</h2>
 
-<p> @Html.ActionLink("Lista Ordini", "Index", "Ordini", new { area = "" }, new { @class = "btn btn-primary" })</p>
-<p> @Html.ActionLink("Dettaglio Ordine", "Index", "DettaglioOrdini", new { area = "" }, new { @class = "btn btn-primary" })</p>
-<p> @Html.ActionLink("Totale Ordini Evasi", "TotaleOrdiniEvasi", "Home", new { area = "" }, new { @class = "btn btn-primary" })</p>
+    <p> @Html.ActionLink("Lista Ordini", "Index", "Ordini", new { area = "" }, new { @class = "btn btn-primary" })</p>
+    <p> @Html.ActionLink("Dettaglio Ordine", "Index", "DettaglioOrdini", new { area = "" }, new { @class = "btn btn-primary" })</p>
+    <p> @Html.ActionLink("Totale Ordini Evasi", "TotaleOrdiniEvasi", "Home", new { area = "" }, new { @class = "btn btn-primary" })</p>
+</div>
 

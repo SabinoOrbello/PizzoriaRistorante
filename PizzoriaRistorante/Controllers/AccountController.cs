@@ -77,7 +77,7 @@ namespace PizzoriaRistorante.Controllers
 
                     Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Prodotti");
                 }
                 else
                 {

@@ -4,55 +4,59 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <h2 class="fTitle">Lista Ordini</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Utenti.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShippingAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
+    
+    <table class="table table-dark tableStyle border border-warning border-3 text-warning">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Utenti.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippingAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th>
 
-    </tr>
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Utenti.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShippingAddress)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.Notes)
-        </td>
-        <td>
-            @Html.ActionLink("Evadi Ordine", "Edit", new { id = item.OrderId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+        </tr>
 
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Utenti.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShippingAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    @Html.ActionLink("Evadi Ordine", "Edit", new { id = item.OrderId }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.OrderId }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.OrderId }, new { @class = "btn btn-danger" })
 
-</table>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

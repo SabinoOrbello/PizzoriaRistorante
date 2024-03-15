@@ -4,55 +4,57 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="container bg-dark">
+    <h2 class="fTitle">Dettaglo Ordini</h2>
 
-<div>
-    <h4>Ordini</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Utenti.Username)
-        </dt>
+    <div>
+        <h4 class="fTitle">Ordini</h4>
+        <hr />
+        <dl class="dl-horizontal fForm" >
+            <dt>
+                @Html.DisplayNameFor(model => model.Utenti.Username)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Utenti.Username)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Utenti.Username)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.OrderDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.OrderDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShippingAddress)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ShippingAddress)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ShippingAddress)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Notes)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Notes)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
