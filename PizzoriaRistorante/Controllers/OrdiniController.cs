@@ -128,7 +128,7 @@ namespace PizzoriaRistorante.Controllers
             db.Ordini.Remove(ordini);
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Carrello");
         }
 
         protected override void Dispose(bool disposing)

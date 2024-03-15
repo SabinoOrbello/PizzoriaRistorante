@@ -13,23 +13,23 @@
 
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
-            @Html.ActionLink("Nome dell'applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Pizzeria Mordi & Fuggi", "Index", "Home", new { area = "" }, new { @class = "navbar-brand fTitle text-warning" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Registrati", "Register", "Account", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link  text-danger" })</li>
+                    <li>@Html.ActionLink("Registrati", "Register", "Account", new { area = "" }, new { @class = "nav-link  text-danger" })</li>
                     
                     @if (Request.IsAuthenticated)
                     {
 
 
-                        <li>@Html.ActionLink("Ordina Prodotto", "Index", "Prodotti", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("BackOffice", "BackOffice", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Ordina Prodotti", "Index", "Prodotti", new { area = "" }, new { @class = "nav-link  text-danger" })</li>
+                        <li>@Html.ActionLink("BackOffice", "BackOffice", "Home", new { area = "" }, new { @class = "nav-link  text-danger" })</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link  text-warning" })</li>
                     }
                     else
                     {

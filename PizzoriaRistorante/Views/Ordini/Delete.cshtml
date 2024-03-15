@@ -4,61 +4,64 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="container bg-dark p-3 mt-3">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Ordini</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Utenti.Username)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Utenti.Username)
-        </dd>
+    <h3 class="fTitle">Are you sure you want to delete this?</h3>
+    <div>
+        <h4 class="fTitle">Ordini</h4>
+        <hr />
+        <dl class="dl-horizontal  fForm border border-3 border-warning p-3">
+            <dt>
+                @Html.DisplayNameFor(model => model.Utenti.Username)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OrderDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Utenti.Username)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OrderDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ShippingAddress)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OrderDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ShippingAddress)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ShippingAddress)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ShippingAddress)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Notes)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Notes)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        </dl>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        @Html.ActionLink("Torna Indietro", "Index", new { area = "" }, new { @class = "botton" })
+    </div>
+        }
+    </div>
 </div>

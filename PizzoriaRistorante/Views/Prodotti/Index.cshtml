@@ -19,7 +19,7 @@
         @foreach (var item in Model)
         {
             <div class="col-3">
-                <div class="card h-100 bgColor border border-3 border-warning">
+                <div class="card h-100 bgColor border border-3 border-warning cart">
                     <div class="card-img-top">
                         <img src="@Url.Content(string.IsNullOrEmpty(item.Image) ? "~/Content/Images/hotel.jpg" : item.Image)" style="height:200px; width:600px" class="img-fluid" alt="...">
                     </div>

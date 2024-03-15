@@ -64,3 +64,12 @@
     font-size: xx-large;
     font-family: fantasy;
 }
+
+.cart {
+    transition: box-shadow .3s, transform 1s;
+}
+
+    .cart:hover {
+        box-shadow: 2px 4px 3px 3px #e7b569c4;
+        transform: translateY(-5px);
+    }

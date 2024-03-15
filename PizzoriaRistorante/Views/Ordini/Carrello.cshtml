@@ -21,7 +21,7 @@
                     <td>@Html.DisplayFor(modelItem => item.Prodotti.Price)</td>
                     <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
                     <td>@(item.Quantity * item.Prodotti.Price)</td>
-                    <td>@Html.ActionLink("Rimuovi", "Delete", "Ordini", new { id = item.ProductId }, new { @class = "btn btn-danger" })</td>
+                    <td>@Html.ActionLink("Rimuovi", "Delete", "Ordini", new { id = item.OrderId }, new { @class = "btn btn-danger" })</td>
                 </tr>
             }
         </tbody>
@@ -29,10 +29,13 @@
 
     <h3 class="tableStyle">Totale: @Model.Sum(item => item.Quantity * item.Prodotti.Price)</h3>
 
+
+
     @{
         int orderId = Model.FirstOrDefault()?.Ordini.OrderId ?? 0;
     }
 
+    <p>@Html.ActionLink("Cancella Ordine", "Delete", "Ordini", new { id = orderId }, new { @class = "btn btn-danger" })</p>
     <p>
         @Html.ActionLink("FinalizzaOrdine", "FinalizzaOrdine", "Prodotti", new { id = orderId }, new { @class = "btn btn-success" })
     </p>
