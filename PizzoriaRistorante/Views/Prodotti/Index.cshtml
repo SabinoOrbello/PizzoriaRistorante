@@ -14,7 +14,7 @@
             @Html.ActionLink("Crea un Nuovo Prodotto", "Create", new { area = "" }, new { @class = "botton" })
         </p>
 
-
+        <p>@Html.ActionLink("Carrello", "Carrello", "Ordini", new { area = "" }, new { @class = "botton" })</p>
 
         @foreach (var item in Model)
         {
@@ -23,32 +23,18 @@
                     <div class="card-img-top">
                         <img src="@Url.Content(string.IsNullOrEmpty(item.Image) ? "~/Content/Images/hotel.jpg" : item.Image)" style="height:200px; width:600px" class="img-fluid" alt="...">
                     </div>
-                    <div class="card-body bgColor">
-                        <h5 class="card-title cardStyle"> @Html.DisplayFor(modelItem => item.Name)</h5>
-                        <p class="card-text text-truncate cardFont"><span class="badge text-bg-warning text-white">Ingredienti</span> : @Html.DisplayFor(modelItem => item.Ingredients)</p>
-                        <span> @Html.ActionLink("Scopri di più", "Details", new { id = item.ProductId }, new { @class = "botton" })</span>
-                    </div>
                     @using (Html.BeginForm("AggiungiAlCarrello", "Prodotti", new { id = item.ProductId }, FormMethod.Post))
                     {
-                        <div class="card-body h-100 bgColor">
-
-                            <p class="badge bg-warning bgColor p-2">Prezzo: @Html.DisplayFor(modelItem => item.Price)</p>
-                            <p class="badge bg-warning bgColor p-2">Tempo di consegna :  @Html.DisplayFor(modelItem => item.DeliveyTime)</p>
-
-                            <div class="form-groupc colorForm">
-                                <span class="colorForm cardFont" for="shippingAddress">Indirizzo di spedizione</span>
-                                <input type="text" class="form-control" id="shippingAddress" name="shippingAddress" required>
-                                <span class="colorForm cardFont" for="Notes">Notes</span>
-                                <input type="text" class="form-control" id="Notes" name="Notes">
-                            </div>
+                        <div class="card-body bgColor">
+                            <h5 class="card-title cardStyle"> @Html.DisplayFor(modelItem => item.Name)</h5>
+                            <p class="card-text text-truncate cardFont"><span class="badge text-bg-warning text-white">Ingredienti</span> : @Html.DisplayFor(modelItem => item.Ingredients)</p>
+                            <span> @Html.ActionLink("Scopri di più", "Details", new { id = item.ProductId }, new { @class = "botton" })</span>
+                            <input type="number" name="quantity" min="1" max="99" value="1" />
                             <input type="submit" value="Aggiungi al carrello" class="botton mt-2 border-0" />
                         </div>
                     }
-
-
                     @if (Request.IsAuthenticated)
                     {
-
                         <div class="card-body bgColor">
                             @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-warning" }) |
                             @Html.ActionLink("Details", "Details", new { id = item.ProductId }, new { @class = "btn btn-warning" }) |

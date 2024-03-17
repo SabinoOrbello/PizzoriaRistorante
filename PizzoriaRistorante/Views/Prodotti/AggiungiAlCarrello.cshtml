@@ -1,0 +1,35 @@
+﻿@model PizzoriaRistorante.Models.Prodotti
+
+@{
+    ViewBag.Title = "AggiungiAlCarrello";
+}
+
+<h2>AggiungiAlCarrello</h2>
+
+
+
+    @using (Html.BeginForm("AggiungiAlCarrello", "Prodotti", new { id = Model.ProductId }, FormMethod.Post))
+    { 
+
+        <div class="card-body h-100 bgColor">
+
+            <div class="form-groupc colorForm">
+                <span class="colorForm cardFont" for="shippingAddress">Indirizzo di spedizione</span>
+                <input type="text" class="form-control" id="shippingAddress" name="shippingAddress" required>
+                <span class="colorForm cardFont" for="Notes">Notes</span>
+                <input type="text" class="form-control" id="Notes" name="Notes">
+                <span class="colorForm cardFont" for="Quantity">Quantità</span>
+                <input type="number" class="form-control" id="Quantity" name="Quantity">
+            </div>
+            <input type="submit" value="Aggiungi al carrello" class="botton mt-2 border-0" />
+        </div>
+    }
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

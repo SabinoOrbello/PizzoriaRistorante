@@ -244,7 +244,7 @@ namespace PizzoriaRistorante.Controllers
 
 
         [HttpPost]
-        public ActionResult AggiungiAlCarrello(int id, string shippingAddress, string Notes)
+        public ActionResult AggiungiAlCarrello(int id, int quantity, string shippingAddress, string Notes)
         {
             // Trova il prodotto con l'ID specificato
             Prodotti prodotto = db.Prodotti.Find(id);
@@ -287,7 +287,7 @@ namespace PizzoriaRistorante.Controllers
             DettaglioOrdini dettaglioOrdini = new DettaglioOrdini
             {
                 ProductId = prodotto.ProductId,
-                Quantity = 1, // Imposta la quantità come desideri
+                Quantity = quantity, // Imposta la quantità come desideri
             };
 
             // Aggiungi il DettaglioOrdini all'ordine
