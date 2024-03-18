@@ -21,7 +21,7 @@
                     <td>@Html.DisplayFor(modelItem => item.Prodotti.Price)</td>
                     <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
                     <td>@(item.Quantity * item.Prodotti.Price)</td>
-                    <td>@Html.ActionLink("Rimuovi", "Delete", "Ordini", new { id = item.OrderId }, new { @class = "btn btn-danger" })</td>
+                    <td>@Html.ActionLink("Rimuovi", "RimuoviDalCarrello", "Prodotti", new { id = item.OrderId }, new { @class = "btn btn-danger" })</td>
                 </tr>
             }
         </tbody>

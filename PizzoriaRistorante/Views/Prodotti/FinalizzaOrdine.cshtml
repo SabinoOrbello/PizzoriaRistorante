@@ -14,6 +14,13 @@
 
         <input type="hidden" name="id" value="@Model.OrderId" />
 
+        <div class="form-group">
+            <label for="shippingAddress">Indirizzo di Spedizione</label>
+            <input type="text" class="form-control" id="shippingAddress" name="shippingAddress" placeholder="Inserisci l'indirizzo di spedizione" required>
+            <label for="notes">Note</label>
+            <input type="text" class="form-control" id="notes" name="notes" placeholder="Inserisci Note" required>
+        </div>
+
         <input type="submit" value="Finalizza Ordine" class="botton" />
     }
 </div>

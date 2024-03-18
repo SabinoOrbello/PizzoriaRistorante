@@ -51,7 +51,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Evadi Ordine", "Edit", new { id = item.OrderId }, new { @class = "btn btn-success" }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.OrderId }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Details", "Details" ,"DettaglioOrdini", new { id = item.OrderId }, new { @class = "btn btn-warning" }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.OrderId }, new { @class = "btn btn-danger" })
 
                 </td>

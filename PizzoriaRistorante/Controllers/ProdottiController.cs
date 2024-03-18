@@ -337,7 +337,7 @@ namespace PizzoriaRistorante.Controllers
         // GET: Ordini/FinalizzaOrdine
 
         [HttpPost]
-        public ActionResult FinalizzaOrdine(int id) // id è l'ID dell'ordine
+        public ActionResult FinalizzaOrdine(int id, string shippingAddress, string notes) // id è l'ID dell'ordine
         {
             // Trova l'ordine con l'ID specificato
             Ordini ordine = db.Ordini.Find(id);
@@ -354,6 +354,10 @@ namespace PizzoriaRistorante.Controllers
                 // Gestisci l'errore qui (l'ordine non appartiene all'utente corrente)
             }
 
+            // Imposta l'indirizzo di spedizione dell'ordine
+            ordine.ShippingAddress = shippingAddress;
+            ordine.Notes = notes;
+
             // Finalizza l'ordine
             ordine.Status = "Finalizzato";
 
@@ -366,6 +370,51 @@ namespace PizzoriaRistorante.Controllers
             // Reindirizza l'utente a una pagina di conferma
             return RedirectToAction("Conferma", "Ordini", new { id = ordine.OrderId });
         }
+
+
+        public ActionResult RimuoviDalCarrello(int id)
+        {
+            // Ottieni l'Username dell'utente corrente
+            string currentUsername = User.Identity.Name;
+
+            // Trova l'utente con questo Username
+            Utenti currentUser = db.Utenti.FirstOrDefault(u => u.Username == currentUsername);
+            if (currentUser == null)
+            {
+                // Gestisci l'errore qui
+            }
+
+            // Ottieni l'ID dell'utente corrente
+            int currentUserId = currentUser.UserId;
+
+            // Trova l'ordine non finalizzato per l'utente corrente
+            Ordini ordine = db.Ordini.FirstOrDefault(o => o.UserId == currentUserId && o.Status == "Non finalizzato");
+
+            // Se non esiste un ordine non finalizzato, non c'è nulla da rimuovere
+            if (ordine == null)
+            {
+                return RedirectToAction("Carrello", "Ordini");
+            }
+
+            // Trova il DettaglioOrdini per il prodotto specificato
+            DettaglioOrdini dettaglioOrdini = ordine.DettaglioOrdini.FirstOrDefault(d => d.ProductId == id);
+
+            // Se il prodotto non è nell'ordine, non c'è nulla da rimuovere
+            if (dettaglioOrdini == null)
+            {
+                return RedirectToAction("Carrello", "Ordini");
+            }
+
+            // Rimuovi il DettaglioOrdini dall'ordine
+            ordine.DettaglioOrdini.Remove(dettaglioOrdini);
+
+            // Salva le modifiche nel database
+            db.SaveChanges();
+
+            // Reindirizza l'utente al carrello
+            return RedirectToAction("Carrello", "Ordini");
+        }
+
 
 
 
